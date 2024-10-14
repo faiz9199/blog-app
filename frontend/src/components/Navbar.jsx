@@ -91,37 +91,37 @@ const Navbar = () => {
         <div className="absolute top-16 right-0 w-full h-screen bg-white shadow-lg md:hidden">
           <ul className="flex flex-col mr-6 items-end gap-8 text-sm text-slate-600 font-semibold p-6">
             <li>
-              <a href="#">Our Story</a>
+              <a href="#" onClick={toggleMobileMenu}>Our Story</a> {/* Close menu on click */}
             </li>
             {loggedIn ? (
               <></>
             ) : (
               <li>
-                <Link to="/signin">Sign In</Link>
+                <Link to="/signin" onClick={toggleMobileMenu}>Sign In</Link> {/* Close menu on click */}
               </li>
             )}
             <li>
-              <Link to="/write" onClick={handleWriteClick}>
+              <Link to="/write" onClick={(e) => { handleWriteClick(e); toggleMobileMenu(); }}>
                 Write
-              </Link>
+              </Link> {/* Close menu on click */}
             </li>
             <li>
-              <Link to="/blog">Blogs</Link>
+              <Link to="/blog" onClick={toggleMobileMenu}>Blogs</Link> {/* Close menu on click */}
             </li>
             {loggedIn && user ? (
               <li>
                 <button
                   className="rounded-full bg-slate-500 text-white text-sm p-2 font-semibold"
-                  onClick={logout}
+                  onClick={() => { logout(); toggleMobileMenu(); }}
                 >
                   Logout
                 </button>
               </li>
             ) : (
               <li>
-                <button className="rounded-full bg-black text-white text-sm p-2 font-semibold">
+                <button className="rounded-full bg-black text-white text-sm p-2 font-semibold" onClick={toggleMobileMenu}>
                   Get Started
-                </button>
+                </button> {/* Close menu on click */}
               </li>
             )}
           </ul>

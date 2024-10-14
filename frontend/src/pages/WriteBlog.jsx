@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "../context/apiConfig";
 import axios from "axios";
 import { PostContext } from "../context/PostContext"; // Adjust the path as necessary
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import the styles
 
 const WriteBlog = ({ placeholder }) => {
   const navigate = useNavigate();
@@ -88,13 +90,14 @@ const WriteBlog = ({ placeholder }) => {
           </div>
         )}
         <div className="w-full">
-          <textarea
+          <ReactQuill
             name="content"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={setContent} // Correctly handle the editor's change
             className="w-full h-[300px] mb-[20px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             placeholder={placeholder}
-            disabled={loading} // Disable textarea when loading
+            disabled={loading}
+            theme="snow"
           />
         </div>
         {loading && <p className="text-center text-gray-600">Publishing...</p>}

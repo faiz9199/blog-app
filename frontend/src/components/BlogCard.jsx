@@ -34,9 +34,13 @@ const BlogCard = ({ post }) => {
             <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl">
               {post.title}
             </h1>
-            <p className="text-gray-700 text-base sm:text-lg md:text-xl">
-              {truncateContent(post.content, 16)}
-            </p>
+            {/* Render the content as HTML using dangerouslySetInnerHTML */}
+            <p
+              className="text-gray-700 text-base sm:text-lg md:text-xl"
+              dangerouslySetInnerHTML={{
+                __html: truncateContent(post.content, 16), // Truncate if needed
+              }}
+            ></p>
           </div>
           <div className="ml-6 flex-shrink-0">
             <Link to={`/blog/${post.id}`}>
