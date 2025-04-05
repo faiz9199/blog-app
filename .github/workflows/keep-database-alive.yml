@@ -2,7 +2,7 @@ name: Keep Database Alive
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # Runs every 10 minutes
+    - cron: "0 0 */5 * *"  # Runs at midnight every 5th day
   workflow_dispatch:  # Allows manual trigger
 
 jobs:

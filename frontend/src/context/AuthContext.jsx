@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       setLoggedIn(true);
-      fetchUser(token); // Fetch the logged-in user's information
+      fetchUser(token);
     }
   }, [loggedIn]);
 
@@ -66,7 +66,10 @@ const AuthProvider = ({ children }) => {
       });
       setUser(response.data.user);
     } catch (error) {
-      console.error("Failed to fetch user", error);
+      if (error.response && error.response.status === 401) {
+        // Token expired or invalid
+        logout(); // Clear token and state
+      }
     }
   };
 
