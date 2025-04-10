@@ -30,38 +30,38 @@ const ArticleDetails = () => {
     : "https://via.placeholder.com/150";
 
   return (
-    <div className="mt-20 flex justify-center">
+    <div className="mt-20 flex justify-center px-4">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex flex-col gap-4 w-full">
-            <div className="flex gap-4 items-center">
-              <div className="bg-slate-300 w-12 h-12 flex items-center justify-center rounded-full text-2xl">
-                {post.authorName.charAt(0).toUpperCase()}
-              </div>
-              <div className="flex flex-col">
-                <p className="text-xl font-bold">{post.authorName}</p>
-                <p className="text-sm text-gray-500">
-                  {new Date(post.createdAt).toLocaleDateString()}
-                </p>
-              </div>
+        <div className="flex flex-col items-center p-6 gap-6">
+          <img
+            src={imageUrl}
+            alt="Post"
+            onError={(e) => {
+              e.target.src = "https://via.placeholder.com/150";
+            }}
+            className="w-full h-auto max-h-[400px] object-cover rounded-lg"
+          />
+
+          <div className="flex gap-4 items-center self-start">
+            <div className="bg-slate-300 w-12 h-12 flex items-center justify-center rounded-full text-2xl">
+              {post.authorName.charAt(0).toUpperCase()}
             </div>
-            <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl">
-              {post.title}
-            </h1>
-            <p className="text-gray-700 text-base sm:text-lg md:text-xl">
-              {post.content}
-            </p>
+            <div className="flex flex-col">
+              <p className="text-xl font-bold">{post.authorName}</p>
+              <p className="text-sm text-gray-500">
+                {new Date(post.createdAt).toLocaleDateString()}
+              </p>
+            </div>
           </div>
-          <div className="ml-6 flex-shrink-0">
-            <img
-              src={imageUrl}
-              alt="Post"
-              onError={(e) => {
-                e.target.src = "https://via.placeholder.com/150";
-              }}
-              className="w-32 h-32 sm:w-48 sm:h-48 md:w-96 md:h-64 object-cover rounded-lg"
-            />
-          </div>
+
+          <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl self-start">
+            {post.title}
+          </h1>
+
+          <div
+            className="text-gray-700 text-base sm:text-lg md:text-xl self-start w-full"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
         </div>
         <hr className="border-t border-gray-200" />
       </div>
